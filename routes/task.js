@@ -1,19 +1,13 @@
-const router = require('express').Router();
-const { getAllTask, createTask } = require('../controllers/task');
+const router = require("express").Router();
+const {
+  getAllTask,
+  getTask,
+  createTask,
+  deleteTask,
+  updateTask,
+} = require("../controllers/task");
 
+router.route("/").get(getAllTask).post(createTask);
+router.route("/:id").get(getTask).patch(updateTask).delete(deleteTask);
 
-
-
-
-
-router.route('/').get(getAllTask).post(createTask)
-
-// Catch-all 404 for any route not handled above
-router.all("*", (req, res) => {
-  res.status(404).json({ message: "Route not found" });
-});
-
-
-
-
-module.exports = router       
+module.exports = router;
